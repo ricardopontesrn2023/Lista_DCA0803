@@ -1,0 +1,6 @@
+int mat[4], *p, x;
+
+p = mat + 1; //válido, pois recebe o endereço de mat[1]
+p = mat++; //inválido, pois recebe o endereço de mat e soma mais um
+p = ++mat; //inválido, pois soma mais um com o endereço de mat
+x = (*mat)++; //válido, pois recebe o valor de mat[0] e depois soma mais um
