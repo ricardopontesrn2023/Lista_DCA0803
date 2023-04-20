@@ -1,0 +1,4 @@
+*(pulo + 2);	//referencia
+*(pulo + 4);	
+pulo + 4;
+pulo + 2;	//referencia
