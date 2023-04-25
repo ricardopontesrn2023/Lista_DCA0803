@@ -1,0 +1,101 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void multmath(int **A,int **B,int **C,int lA,int cA, int cB);
+
+int main(void) {
+
+    int **A, **B, **C;
+    int lA=4,cA=6;
+    int lB=6,cB=5;
+
+    srand(time(NULL));
+
+    A =(int**)malloc(lA*sizeof(int*));
+    A[0]=(int*) malloc(lA*cA*sizeof(int));
+
+    B =(int**)malloc(lB*sizeof(int*));
+    B[0]=(int*) malloc(lB*cB*sizeof(int));
+
+
+    for(int i=1;i<lA;i++)
+    {
+        A[i] = A[i-1] + cA;
+    }
+
+    for(int i=0;i<lA; i++)
+        {
+            for(int j=0;j<cA;j++)
+                {
+                    A[i][j] = rand()%3;
+                    printf("%d:  ",A[i][j]);
+                }
+            printf("\n\n");
+        }
+    printf("\n\n\n");
+
+     for(int i=1;i<lB;i++)
+    {
+        B[i] = B[i-1] + cB;
+    }
+
+    for(int i=0;i<lB; i++)
+        {
+            for(int j=0;j<cB;j++)
+                {
+                    B[i][j] = rand()%3;
+                    printf("%d:  ",B[i][j]);
+                }
+            printf("\n\n");
+        }
+    if(cA==lB)
+    {
+        printf("\n\n");
+        multmath(A,B,C,lA,cA,cB);
+    }
+    else
+    {
+        printf("A quantidade de colunas de A precisa ser igual as linhas de B");
+        return 0;
+    }
+
+    free(A[0]);
+    free(A);
+    free(B[0]);
+    free(B);
+
+  return 0;
+}void multmath(int **A,int **B,int **C,int lA,int cA, int cB)
+{
+    int auxiliar=0;
+
+    C =(int**)malloc(lA*sizeof(int*));
+    C[0]=(int*) malloc(lA*cB*sizeof(int));
+
+    for(int i=1;i<lA;i++)
+    {
+        C[i] = C[i-1] + cB;
+    }
+
+    for(int i=0;i<lA;i++)
+    {
+        for(int j=0;j<cB;j++)
+        {
+            C[i][j]=0;
+            for(int k=0;k<cA;k++)
+            {
+                auxiliar+= A[i][k] * B[k][j];
+                //printf ("%d\n\n ", auxiliar);
+
+            }
+
+            C[i][j] = auxiliar;
+            printf("%d: ", C[i][j]);
+            auxiliar=0;
+        }
+
+        printf("\n\n");
+    }
+    free(C[0]);
+    free(C);
+}
