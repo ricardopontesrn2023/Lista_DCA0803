@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+    char x[8];
+
+    printf("%p\n",x);
+    printf("%p\n",x+1);
+    printf("%p\n",x+2);
+    printf("%p\n",x+3);
+
+   
+  
+    return 0;
+}
