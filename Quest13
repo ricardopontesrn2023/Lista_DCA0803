@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void) {
+    
+  int numb, aux;
+  float *x;
+    
+  printf("Quantos elementos serao ordenadados? ");
+  scanf("%d",&numb);
+    
+  x =(float *) malloc(numb*sizeof(float));
+  
+  for(int i = 0 ; i < numb ; i++)
+  {
+      printf("\nDigite o %dº numero - ",i+1);
+      scanf("%f",&x[i]);
+  }
+
+  for(int i = 0 ; i < numb ; i++)
+  {
+      for(int j = i ; j < numb; j++)
+      {
+          if (*(x + i) > *(x + j))
+          {
+              aux = *(x + i);
+              *(x + i) = *(x + j);
+              *(x + j) = aux;
+          }
+      }
+  }
+
+  
+  printf("\n\nOrdenando os elementos, tem-se:\n");
+  for (int i = 0 ; i < numb ; i++)
+  {
+      printf("%g\n",*(x + i));
+  }
+ 
+  free(x);
+
+  return 0;
+}
