@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void somaVet (int num, int *vetA, int *vetB, int *vetC);
+
+int main (void){
+  
+ int *A, *B, *C;
+ int numb;
+	
+ printf("Quantos elementos haverá nos vetores: ");
+ scanf("%d", &numb);
+
+ A = (int *)malloc(numb*sizeof(int));
+ B = (int *)malloc(numb*sizeof(int));
+ C = (int *)malloc(numb*sizeof(int));
+
+ for(int i=0;i<numb;i++)
+ {
+      printf("Digite o %dº elemento da vetor A: ",i+1);
+      scanf("%d", &*(A+i));
+ }
+ printf("\n\n");
+ 
+ for(int i=0;i<numb;i++)
+ {
+      printf("Digite o %dº elemento da vetor B: ",i+1);
+      scanf("%d", &*(B+i));
+ }
+
+ somaVet(numb,A,B,C); //funcao para preencher o vetor
+	
+ free(A);
+ free(B);
+ free(C);
+
+return 0;
+}
+
+void somaVet(int num, int *vetA, int *vetB, int *vetC)
+{
+    int i;
+
+    printf("\n\nVetor soma C: \n");
+    for(i = 0; i < num; i++)
+    {
+        vetC[i] = vetA[i] + vetB[i];
+        printf("%d|",vetC[i]);
+    }
+}
