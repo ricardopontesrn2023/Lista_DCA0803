@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int comparador(const void *a, const void *b);
+void arrange(float *pont,int elem,int(*comparador)(float *a, float *b));
+
+int main(void) 
+{
+  int numb, aux;
+  float *x;
+    
+  printf("Quantos elementos serao ordenadados? ");
+  scanf("%d",&numb);
+
+  x = (float *)malloc(numb*sizeof(float));
+    
+  for(int i = 0 ; i < numb ; i++){
+    printf("\nDigite o %dº numero - ",i+1);
+    scanf("%f",&x[i]);
+  }
+  arrange(x, numb, comparador);
+  
+  free(x);
+  return 0;
+}
+
+int comparador(const void *a, const void *b) 
+{
+  return ( *(int*)a - *(int*)b );
+}
+
+void arrange (float *pont,int elem,int(*comparador)(float *a, float *b))
+{
+  float aux;
+    
+  for(int i = 0 ; i < elem ; i++)
+  {
+      for(int j = i ; j < elem; j++)
+      {
+          if (comparador((pont + i) ,(pont + j))>0)
+          {
+              aux = *(pont + i);
+              *(pont + i) = *(pont + j);
+              *(pont + j) = aux;
+          }
+      }
+  }
+    
+  printf("\n\nOrdenando os elementos, tem-se:\n");
+  for (int i = 0 ; i < elem ; i++)
+  {
+    printf("%g\n",*(pont + i));  
+  }
+}
